@@ -28,7 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Or visit the Vercel Deployment
 
-Open [Vercel link](link)
+Open [Link](https://coding-challenge-1-robinwitt.vercel.app/)
 
 ---
 
