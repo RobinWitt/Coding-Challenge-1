@@ -1,3 +1,4 @@
+import artistsDataToCsv from "@/lib/dataToCsv";
 import handleSearchArtists from "@/lib/fetchArtists";
 import Head from "next/head";
 import { useState } from "react";
@@ -36,7 +37,12 @@ export default function Home() {
         <section className="section-results">
           {searchResults && (
             <>
-              <button type="button">Download as CSV File</button>
+              <button
+                type="button"
+                onClick={() => artistsDataToCsv(searchResults)}
+              >
+                Download as CSV File
+              </button>
               <h2>Your results:</h2>
               <ul className="results-list">
                 <li className="results-listheader">
