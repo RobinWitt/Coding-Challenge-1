@@ -9,7 +9,30 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main></main>
+      <main>
+        <section className="section-search">
+          <h1>Search for Artists on last.fm</h1>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="artist-search">Enter artist name</label>
+            <input id="artist-search" type="text" name="artist" required />
+            <button type="submit">Search</button>
+          </form>
+        </section>
+        <section className="section-results">
+          {searchResults && (
+            <>
+              <button type="button">Download as CSV File</button>
+              <h2>Your results:</h2>
+              <ul className="results-list">
+                <li className="results-listheader">
+                  <span>Name:</span>
+                  <span>URL:</span>
+                </li>
+              </ul>
+            </>
+          )}
+        </section>
+      </main>
     </>
   );
 }
