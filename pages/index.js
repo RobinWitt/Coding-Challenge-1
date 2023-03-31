@@ -1,9 +1,10 @@
 import artistsDataToCsv from "@/lib/dataToCsv";
 import handleSearchArtists from "@/lib/fetchArtists";
 import Head from "next/head";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Home() {
+  const ref = useRef(null);
   const [searchResults, setSearchResults] = useState();
 
   async function handleSubmit(event) {
@@ -15,6 +16,10 @@ export default function Home() {
     setSearchResults(response);
 
     event.target.reset();
+  }
+
+  function handleFocus() {
+    ref.current.focus();
   }
 
   return (
@@ -30,7 +35,13 @@ export default function Home() {
           <h1>Search for Artists on last.fm</h1>
           <form onSubmit={handleSubmit}>
             <label htmlFor="artist-search">Enter artist name</label>
-            <input id="artist-search" type="text" name="artist" required />
+            <input
+              id="artist-search"
+              type="text"
+              name="artist"
+              required
+              ref={ref}
+            />
             <button type="submit">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <title>magnify</title>
@@ -41,7 +52,7 @@ export default function Home() {
           </form>
         </section>
         <section className="section-results">
-          {searchResults && (
+          {searchResults && searchResults.length > 5 ? (
             <>
               <button
                 type="button"
@@ -69,7 +80,36 @@ export default function Home() {
                 })}
               </ul>
             </>
+          ) : (
+            searchResults && (
+              <>
+                <h2>No matches to your search</h2>
+                <p className="random-results__text">
+                  Here are some fictional artist names instead:
+                </p>
+                <ul className="random-results__list">
+                  {searchResults.map((artist) => {
+                    return (
+                      <li key={self.crypto.randomUUID()}>
+                        <span>{artist}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            )
           )}
+          <button
+            type="button"
+            onClick={handleFocus}
+            className="new-search-button"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>arrow-up</title>
+              <path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" />
+            </svg>
+            Try different search
+          </button>
         </section>
       </main>
     </>

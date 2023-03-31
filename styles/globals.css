@@ -111,3 +111,17 @@ li > span {
   border-bottom: 1px solid grey;
   padding: 0.2rem;
 }
+
+.random-results__text {
+  font-weight: 700;
+  color: darkcyan;
+}
+
+.random-results__list span {
+  border: none;
+  text-align: center;
+}
+
+.new-search-button {
+  margin-top: 1rem;
+}
