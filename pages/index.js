@@ -20,6 +20,9 @@ export default function Home() {
 
   function handleFocus() {
     ref.current.focus();
+    window.scrollTo(0, 0, {
+      behavior: "smooth",
+    });
   }
 
   return (
@@ -74,7 +77,11 @@ export default function Home() {
                   return (
                     <li key={self.crypto.randomUUID()}>
                       <span>{name}</span>
-                      <span>{url}</span>
+                      <span>
+                        <a href={url} target="_blank">
+                          {url}
+                        </a>
+                      </span>
                     </li>
                   );
                 })}
@@ -99,17 +106,19 @@ export default function Home() {
               </>
             )
           )}
-          <button
-            type="button"
-            onClick={handleFocus}
-            className="new-search-button"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <title>arrow-up</title>
-              <path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" />
-            </svg>
-            Try different search
-          </button>
+          {searchResults && (
+            <button
+              type="button"
+              onClick={handleFocus}
+              className="new-search-button"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>arrow-up</title>
+                <path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" />
+              </svg>
+              Try different search
+            </button>
+          )}
         </section>
       </main>
     </>
