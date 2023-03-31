@@ -49,6 +49,14 @@ export default function Home() {
                   <span>Name:</span>
                   <span>URL:</span>
                 </li>
+                {searchResults.map(({ name, url }) => {
+                  return (
+                    <li key={self.crypto.randomUUID()}>
+                      <span>{name}</span>
+                      <span>{url}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </>
           )}
