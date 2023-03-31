@@ -1,6 +1,21 @@
+import handleSearchArtists from "@/lib/fetchArtists";
 import Head from "next/head";
+import { useState } from "react";
 
 export default function Home() {
+  const [searchResults, setSearchResults] = useState();
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    const response = await handleSearchArtists(data.artist);
+    setSearchResults(response);
+
+    event.target.reset();
+  }
+
   return (
     <>
       <Head>
