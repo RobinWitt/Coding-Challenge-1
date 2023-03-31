@@ -4,9 +4,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ---
 
-## How to use this Project
+## How to use this Project locally
 
-Run the development server locally:
+First, you need to register at [LastFM](https://www.last.fm/api/accounts) to create an API_KEY and story it into an environment variable
+
+```
+env.local
+```
+
+Run the development server:
 
 ```bash
 npm run dev
